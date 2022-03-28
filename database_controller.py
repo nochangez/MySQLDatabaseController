@@ -18,9 +18,6 @@ class DatabaseController:
             )  # init db connection
 
             self.cursor = self.connection.cursor()  # init db cursor
-
-            # make an indent
-            print("\n")
         except Error as database_error:
             print(f"[db] an error has occurred: {database_error}")
 
@@ -36,3 +33,14 @@ class DatabaseController:
         self.connection.commit()  # save changes
 
         print("[db] query done")
+
+    @staticmethod
+    def get_token(token_name):
+        # get token
+        get_telegram_token_query = f"SELECT * FROM tokens WHERE token_name='{token_name}'"
+        dirty_token = DatabaseController().get_data_execute_query(get_telegram_token_query)
+
+        # filter token
+        token = dirty_token[0][-1]
+
+        return token
