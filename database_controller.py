@@ -12,9 +12,9 @@ class DatabaseController:
         try:
             # try to connect to the database and init connection
             self.connection = connect(
-                user="root",  # str(input("[db] enter your username: ")),
-                password="casperhere",  # getpass("[db] enter your password: "),
-                database="loader_bot",  # str(input("[db] enter database name: ")),
+                user=str(input("[db] enter your username: ")),
+                password=getpass("[db] enter your password: "),
+                database=str(input("[db] enter database name: ")),
             )  # init db connection
 
             self.cursor = self.connection.cursor()  # init db cursor
